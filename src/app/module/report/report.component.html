@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header">
+        <h6 class="mb-0 text-main">Employee Report</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Employee Code</th>
+                        <th>Name</th>
+                        <th>Email ID</th>
+                        <th>Mobile No.</th>
+                        <th>Designation</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let empView of employeeList">                              <!-------use syntax - *ngFor="let item of items"-------->
+                        <td>{{empView.empCode}}</td>
+                        <td>{{empView.empName}}</td>
+                        <td>{{empView.empEmailId}}</td>
+                        <td>{{empView.mobile}}</td>
+                        <td>{{empView.empDesignation}}</td>
+                        <td>{{empView.role}}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button mat-mini-fab color="primary" matTooltip="Edit">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-mini-fab color="primary" matTooltip="Delete">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

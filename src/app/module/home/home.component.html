@@ -1,0 +1,318 @@
+<div class="progress-wrapper">
+    <div id="progress-bar-container">
+        <ul>
+            <li class="step step01" (click)="setActiveStep(step)"
+                [ngClass]="step.stepName == activeStep.stepName ? 'active':'' " *ngFor="let step of stepList">
+                <div class="step-inner">{{step.stepName}}</div>
+            </li>
+        </ul>
+        <div id="line">
+            <div id="line-progress" [style.width.%]="stepperCompletionValue"></div>
+        </div>
+        <!-- progress-bar-container -->
+        <div id="progress-content-section">
+            <div class="section-content step1 active" *ngIf="activeStep.stepName == 'Basic Details' ">
+                <div class="row gx-2">
+                    <div class="col-sm-12 text-start">
+                        <h6 class="text-main">Employee Basic Details</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Name</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Email ID</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empEmailId">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Password</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.password">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row g-2">
+                            <div class="col-sm-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Designation</mat-label>
+                                    <mat-select [(ngModel)]="employeeObj.empDesignationId">
+                                        @for (designation of designationList; track $index) {
+                                        <mat-option
+                                            [value]="designation.designationId">{{designation.designation}}</mat-option>
+                                        }
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Role</mat-label>
+                                    <mat-select [(ngModel)]="employeeObj.roleId">
+                                        <mat-option [value]="role.roleId" *ngFor="let role of roleList">
+                                            {{role.role}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Contact No.</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empContactNo">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Alternate Contact No.</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empAltContactNo">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Personal Email ID</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empPersonalEmailId">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>User Name</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.userName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Employee ID</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empCode">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <!-----Experience------->
+
+                <div class="row gx-2">
+                    <div class="col-sm-12 text-start">
+                        <h6 class="text-main">Experience</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Total Years</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empExpTotalYear">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Total Month</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empExpTotalMonth">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-----Current-Address------->
+
+                <div class="row gx-2">
+                    <div class="col-sm-12 text-start">
+                        <h6 class="text-main">Current Address</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>City</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empCity">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>State</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empState">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Pin Code</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empPinCode">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Address</mat-label>
+                            <textarea matInput [(ngModel)]="employeeObj.empAddress"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-----Permanent-Address------->
+
+                <div class="row gx-2">
+                    <div class="col-sm-12 text-start">
+                        <h6 class="text-main">Permanent Address</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>City </mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empPerCity">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>State</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empPerState">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Pin Code</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empPerPinCode">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Address </mat-label>
+                            <textarea matInput [(ngModel)]="employeeObj.empPerAddress"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button mat-flat-button color="primary" (click)="nextStep()">Next</button>
+                </div>
+            </div>
+
+            <div class="section-content step2 active" *ngIf="activeStep.stepName == 'Skills' ">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                    <h6 class="mb-0 text-main">Skill Details</h6>
+                                    <button mat-flat-button color="primary" (click)="addSkills()">
+                                        <mat-icon>add</mat-icon> Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table dashboard-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Skill Name</th>
+                                                <th>Total Experience</th>
+                                                <th>Last Version</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let empskill of employeeObj.erpEmployeeSkills">
+                                                <td>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="empskill.skill">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="empskill.totalYearExp">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control"
+                                                        [(ngModel)]="empskill.lastVersionUsed">
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-2">
+                                                        <button mat-mini-fab color="primary" matTooltip="Save">
+                                                            <mat-icon>save</mat-icon>
+                                                        </button>
+                                                        <button mat-mini-fab color="primary" matTooltip="Delete">
+                                                            <mat-icon>delete</mat-icon>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-end">
+                                <button mat-flat-button color="primary" (click)="nextStep2()">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-content step3 active" *ngIf="activeStep.stepName == 'Experience' ">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                    <h6 class="mb-0 text-main">Experience Details</h6>
+                                    <button mat-flat-button color="primary" (click)="addExpObj()">
+                                        <mat-icon>add</mat-icon> Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table dashboard-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Designation</th>
+                                                <th>Project</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let empExp of employeeObj.ermEmpExperiences">
+                                                <td>
+                                                    <input type="email" class="form-control"
+                                                        [(ngModel)]="empExp.companyName">
+                                                </td>
+                                                <td>
+                                                    <input type="date" class="form-control"
+                                                        [(ngModel)]="empExp.startDate">
+                                                </td>
+                                                <td>
+                                                    <input type="date" class="form-control"
+                                                        [(ngModel)]="empExp.endDate">
+                                                </td>
+                                                <td>
+                                                    <input type="email" class="form-control"
+                                                        [(ngModel)]="empExp.designation">
+                                                </td>
+                                                <td>
+                                                    <input type="email" class="form-control"
+                                                        [(ngModel)]="empExp.projectsWorkedOn">
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-2">
+                                                        <button mat-mini-fab color="primary" matTooltip="Save">
+                                                            <mat-icon>save</mat-icon>
+                                                        </button>
+                                                        <button mat-mini-fab color="primary" matTooltip="Delete">
+                                                            <mat-icon>delete</mat-icon>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-end">
+                                <button mat-flat-button color="primary" (click)="saveEmployee()">
+                                    Save Employee
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- progress-wrapper -->
+</div>
