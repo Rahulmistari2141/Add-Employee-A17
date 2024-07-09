@@ -10,6 +10,7 @@
             <div id="line-progress" [style.width.%]="stepperCompletionValue"></div>
         </div>
         <!-- progress-bar-container -->
+
         <div id="progress-content-section">
             <div class="section-content step1 active" *ngIf="activeStep.stepName == 'Basic Details' ">
                 <div class="row gx-2">
@@ -19,19 +20,29 @@
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Name</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empName">
+                            <input matInput [(ngModel)]="employeeObj.empName" name="empName" #empName="ngModel" required
+                                minlength="3">
+                            <mat-error>
+                                <span *ngIf="empName.errors?.['required']">Please Enter Validate Name</span>
+                                <span *ngIf="empName.errors?.['minlength']">Please Enter MIn 3 Charactrs Needed</span>
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Email ID</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empEmailId">
+                            <input matInput [(ngModel)]="employeeObj.empEmailId" name="empEmailId" #empEmailId="ngModel"
+                                required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                            <mat-error *ngIf="empEmailId.errors && empEmailId.errors?.['required']">Please Enter Email ID</mat-error>
+                            <mat-error *ngIf="empEmailId.errors && empEmailId.errors?.['pattern']">Email is invalid</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Password</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.password">
+                            <input matInput [(ngModel)]="employeeObj.password" maxlength="8" name="password"
+                                #password="ngModel" required>
+                            <mat-error *ngIf="password.errors?.['required']">Please Enter Validate Password</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
@@ -61,35 +72,43 @@
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Contact No.</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empContactNo">
+                            <mat-label>Mobile No.</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empContactNo" maxlength="10" name="empContactNo"
+                                #empContactNo="ngModel" required onlyNumber pattern="[0-9]*">
+                            <mat-error *ngIf="empContactNo.errors?.['required']">Please Enter Mobile No.</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Alternate Contact No.</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empAltContactNo">
+                            <mat-label>Alternate Mobile No.</mat-label>
+                            <input matInput [(ngModel)]="employeeObj.empAltContactNo" maxlength="10">
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Personal Email ID</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empPersonalEmailId">
+                            <input matInput [(ngModel)]="employeeObj.empPersonalEmailId" name="empPersonalEmailId"
+                                #empPersonalEmailId="ngModel" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                                <mat-error *ngIf="empPersonalEmailId.errors && empPersonalEmailId.errors?.['required']">Please Enter Email ID</mat-error>
+                                <mat-error *ngIf="empPersonalEmailId.errors && empPersonalEmailId.errors?.['pattern']">Email is invalid</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>User Name</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.userName">
+                            <input matInput [(ngModel)]="employeeObj.userName" name="userName" #userName="ngModel"
+                                required>
+                            <mat-error *ngIf="userName.errors?.['required']">Please Enter User Name</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Employee ID</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empCode">
+                            <input matInput [(ngModel)]="employeeObj.empCode" name="empCode" #empCode="ngModel"
+                                required>
+                            <mat-error *ngIf="empCode.errors?.['required']">Please Enter Employee ID</mat-error>
                         </mat-form-field>
                     </div>
-
                 </div>
 
                 <!-----Experience------->
@@ -101,13 +120,15 @@
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Total Years</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empExpTotalYear">
+                            <input matInput [(ngModel)]="employeeObj.empExpTotalYear" maxlength="2"
+                                name="empExpTotalYear" #empExpTotalYear="ngModel" required>
+                            <mat-error *ngIf="empExpTotalYear.errors?.['required']">Please Enter Total Years</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Total Month</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empExpTotalMonth">
+                            <input matInput [(ngModel)]="employeeObj.empExpTotalMonth" maxlength="2">
                         </mat-form-field>
                     </div>
                 </div>
@@ -133,7 +154,7 @@
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Pin Code</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empPinCode">
+                            <input matInput [(ngModel)]="employeeObj.empPinCode" maxlength="6">
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12">
@@ -165,7 +186,7 @@
                     <div class="col-sm-4">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Pin Code</mat-label>
-                            <input matInput [(ngModel)]="employeeObj.empPerPinCode">
+                            <input matInput [(ngModel)]="employeeObj.empPerPinCode" maxlength="6">
                         </mat-form-field>
                     </div>
                     <div class="col-sm-12">
@@ -179,6 +200,7 @@
                 <div class="text-end">
                     <button mat-flat-button color="primary" (click)="nextStep()">Next</button>
                 </div>
+
             </div>
 
             <div class="section-content step2 active" *ngIf="activeStep.stepName == 'Skills' ">
@@ -211,7 +233,7 @@
                                                         [(ngModel)]="empskill.skill">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" class="form-control" maxlength="2"
                                                         [(ngModel)]="empskill.totalYearExp">
                                                 </td>
                                                 <td>

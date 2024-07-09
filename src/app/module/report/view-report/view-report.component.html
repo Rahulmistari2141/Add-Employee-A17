@@ -1,0 +1,35 @@
+<h2 mat-dialog-title class="text-main">Employee Details</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="row g-2 form-container">
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Employee Code :</p>
+            <p class="form-data">{{data.empCode}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Employee Name :</p>
+            <p class="form-data">{{data.empName}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Employee Email ID :</p>
+            <p class="form-data">{{data.empEmailId}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Employee Mobile No.:</p>
+            <p class="form-data">{{data.mobile}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Designation :</p>
+            <p class="form-data">{{data.empDesignation}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Employee Role :</p>
+            <p class="form-data">{{data.role}}</p>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="d-flex gap-2">
+        <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+        <button mat-flat-button type="button" color="primary" >Edit</button>
+    </div>
+</mat-dialog-actions>

@@ -3,6 +3,19 @@
         <h6 class="mb-0 text-main">Employee Report</h6>
     </div>
     <div class="card-body">
+        <div class="row g-2">
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <input matInput placeholder="Search by Employee Code / Name">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-auto">
+                <div class="d-flex justify-content-between gap-2">
+                    <button mat-flat-button color="primary">Search</button>
+                    <button  mat-stroked-button color="primary">Clear</button>
+                </div>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table dashboard-table">
                 <thead>
@@ -26,9 +39,12 @@
                         <td>{{empView.role}}</td>
                         <td>
                             <div class="d-flex gap-2">
-                                <button mat-mini-fab color="primary" matTooltip="Edit">
-                                    <mat-icon>edit</mat-icon>
+                                <button mat-mini-fab color="primary" matTooltip="Edit" (click)="openDialog(empView)">
+                                    <mat-icon>visibility</mat-icon>
                                 </button>
+                                <!-- <button mat-mini-fab color="primary" matTooltip="Edit">
+                                    <mat-icon>edit</mat-icon>
+                                </button> -->
                                 <button mat-mini-fab color="primary" matTooltip="Delete">
                                     <mat-icon>delete</mat-icon>
                                 </button>

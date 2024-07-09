@@ -1,10 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ViewReportComponent } from './view-report/view-report.component';
 
 @Component({
   selector: 'app-report',
@@ -16,6 +21,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatTooltipModule,
     HttpClientModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    MatDialogModule
   ],
   templateUrl: './report.component.html',
   styleUrl: './report.component.scss'
@@ -23,17 +33,33 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class ReportComponent implements OnInit {
   formView: boolean = false;
   employeeList: any[] = [];
+  readonly dialog = inject(MatDialog);
+  empView: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private matDialog:MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.viewAllEmployees();
   }
 
-  viewAllEmployees(){
-    this.http.get('https://freeapi.gerasim.in/api/EmployeeApp/GetAllEmployee').subscribe((res:any) => {                              
-        this.employeeList = res.data;
+  viewAllEmployees() {
+    this.http.get('https://freeapi.gerasim.in/api/EmployeeApp/GetAllEmployee').subscribe((res: any) => {
+      this.employeeList = res.data;
     })
   }
 
+
+  openDialog(data?: any) {
+    const dialogRef = this.matDialog.open(ViewReportComponent,{
+      width: '500px',
+      data: data,
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      result == 'yes' ? this.empView = null : '';
+    });
+  };
 }
+

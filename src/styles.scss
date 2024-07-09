@@ -49,6 +49,7 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+//-----------------material-css-------------------//
 
 .mdc-form-field,
 .mdc-tab__content,
@@ -85,7 +86,7 @@ body {
 }
 
 .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
-    top: 17px !important;
+    top: 15px !important;
 }
 
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
@@ -93,8 +94,24 @@ body {
 }
 
 .mdc-button{
-    @include mat.button-density(-1);
+    @include mat.button-density(1);
 }
+
+.mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+    top: -4px !important;
+    padding: 0 8px  !important;
+}
+
+.mdc-dialog__title::before {
+    height: 24px !important;
+}
+
+.mat-mdc-dialog-title {
+    padding: 0 9px 7px !important;
+}
+
+
+//-----------------style-css-------------------//
 
 .dashboard-table{
     width: 100%;
@@ -145,9 +162,10 @@ body {
 .form-container .form-label {
     font-family: var(--default-font) !important;
     font-size: 0.85rem;
-    margin-bottom: 3px;
+    margin-bottom: 0px;
     letter-spacing: normal;
-    color: #151515;
+    color: #665555;
+    font-weight: 500;
 }
 
 .form-container .form-data {
@@ -163,7 +181,7 @@ body {
 a.text-main {
     color: var(--main-color) !important;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
     cursor: pointer !important;
 }
 

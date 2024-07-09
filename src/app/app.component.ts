@@ -8,6 +8,7 @@ import { AboutComponent } from './layout/about/about.component';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { HomeComponent } from './module/home/home.component';
 import { CommonModule } from '@angular/common';
+import { LoginComponent } from './module/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { CommonModule } from '@angular/common';
     MatTableModule,
     AboutComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
