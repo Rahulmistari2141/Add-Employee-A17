@@ -53,7 +53,7 @@ export class ReportComponent implements OnInit {
 
   openDialog(data?: any) {
     const dialogRef = this.matDialog.open(ViewReportComponent,{
-      width: '500px',
+      width: '650px',
       data: data,
       disableClose: true,
     });

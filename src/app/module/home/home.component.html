@@ -74,8 +74,9 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Mobile No.</mat-label>
                             <input matInput [(ngModel)]="employeeObj.empContactNo" maxlength="10" name="empContactNo"
-                                #empContactNo="ngModel" required onlyNumber pattern="[0-9]*">
+                                #empContactNo="ngModel" required onlyNumber pattern="['[5-9]\\d{10}']" (keypress)="onlyDigits($event)">
                             <mat-error *ngIf="empContactNo.errors?.['required']">Please Enter Mobile No.</mat-error>
+                            <mat-error *ngIf="empContactNo.errors?.['pattern']">Please Enter valid Mobile No.</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">

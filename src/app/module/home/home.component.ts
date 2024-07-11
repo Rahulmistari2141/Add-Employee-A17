@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { AboutComponent } from '../../layout/about/about.component';
 import { DashboardComponent } from '../../layout/dashboard/dashboard.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,13 +38,22 @@ export class HomeComponent implements OnInit {
   designationList: any[] = [];
   roleList: any[] = [];
   stepperCompletionValue: number = 11;
+  employeeId:any;
+  editEmployee:any
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private activatedRoute: ActivatedRoute,
+  ) {
+    this.activatedRoute?.queryParamMap.subscribe((queryParam) => {
+      this.employeeId = queryParam.get('id');
+     console.log(this.employeeId )
+   });
+  }
 
   ngOnInit(): void {
     this.loadDesignations();
     this.loadRoles();
-  }
+    this.employeeId !=0 ? this.onedit(this.employeeId) : ''  }
 
   stepList: any[] = [
     {
@@ -69,7 +78,7 @@ export class HomeComponent implements OnInit {
     "userName": "",
     "empCode": "",
     "empId": 0,
-    "empName": "",
+    "empName":"",
     "empEmailId": "",
     "empDesignationId": 0,
     "empContactNo": "",
@@ -86,8 +95,8 @@ export class HomeComponent implements OnInit {
     "empPerPinCode": "",
     "empPerAddress": "",
     "password": "",
-    erpEmployeeSkills: [],
-    ermEmpExperiences: []
+    "erpEmployeeSkills": [],
+    "ermEmpExperiences": [],
   }
 
   addSkills() {
@@ -96,7 +105,7 @@ export class HomeComponent implements OnInit {
       "empId": 0,
       "skill": "",
       "totalYearExp": 0,
-      "lastVersionUsed": ""
+      "lastVersionUsed": "",
     };
     this.employeeObj.erpEmployeeSkills.unshift(skillObj);
   }
@@ -109,13 +118,13 @@ export class HomeComponent implements OnInit {
       "startDate": "2024-06-19T10:17:21.856Z",
       "endDate": "2024-06-19T10:17:21.856Z",
       "designation": "",
-      "projectsWorkedOn": ""
-    }
+      "projectsWorkedOn": "",
+    };
     this.employeeObj.ermEmpExperiences.unshift(ExpObj);
   }
 
   saveEmployee() {
-    debugger;
+    // debugger;
     this.http.post("https://freeapi.gerasim.in/api/EmployeeApp/CreateNewEmployee", this.employeeObj).subscribe((res: any) => {
       if (res.result) {
         alert('Employee Created Success')
@@ -150,4 +159,17 @@ export class HomeComponent implements OnInit {
     this.activeStep = this.stepList[2];
     this.stepperCompletionValue = 100;
   }
+
+  onlyDigits(event: any) {
+    const maskSeperator = new RegExp('^([0-9])', 'g');
+    return maskSeperator.test(event.key);
+  }
+
+  onedit(id:any){
+    this.http.get("https://freeapi.gerasim.in/api/EmployeeApp/GetEmployeeByEmployeeId?id=" + id).subscribe((res: any) => {
+      this.employeeObj = res.data;
+      console.log("data", this.employeeObj)
+    });
+  }
+
 }

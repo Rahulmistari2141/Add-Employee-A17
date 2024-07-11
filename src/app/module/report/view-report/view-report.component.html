@@ -1,4 +1,11 @@
-<h2 mat-dialog-title class="text-main">Employee Details</h2>
+<div mat-dialog-title class="modal-body">
+    <div class="d-flex justify-content-between align-items-center w-100">
+        <span>Employee Details</span>
+        <button mat-mini-fab mat-dialog-close >
+            <mat-icon >close</mat-icon>
+        </button>
+    </div>
+</div>
 <mat-dialog-content class="mat-typography">
     <div class="row g-2 form-container">
         <div class="col-sm-4">
@@ -25,11 +32,39 @@
             <p class="form-label mb-0">Employee Role :</p>
             <p class="form-data">{{data.role}}</p>
         </div>
+        <!-- <div class="col-sm-4">
+            <p class="form-label mb-0">Employee skills :</p>
+            <p class="form-data">{{data.skill}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Employee Total Experience :</p>
+            <p class="form-data">{{data.totalYearExp}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Company Name :</p>
+            <p class="form-data">{{data.companyName}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Start Date :</p>
+            <p class="form-data">{{data.startDate}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Last Date :</p>
+            <p class="form-data">{{data.endDate}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">Employee Designation :</p>
+            <p class="form-data">{{data.designation}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p class="form-label mb-0">project Name :</p>
+            <p class="form-data">{{data.projectsWorkedOn}}</p>
+        </div> -->
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <div class="d-flex gap-2">
-        <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
-        <button mat-flat-button type="button" color="primary" >Edit</button>
+        <!-- <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button> -->
+        <button mat-flat-button type="button" color="primary" (click)="onEdit(emp.empId);onClose()">Edit</button>
     </div>
 </mat-dialog-actions>

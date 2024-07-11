@@ -103,15 +103,31 @@ body {
 }
 
 .mdc-dialog__title::before {
-    height: 24px !important;
+   content: none !important;
 }
 
 .mat-mdc-dialog-title {
-    padding: 0 9px 7px !important;
+    background-color:  #2b377b;;
+    color: #fff !important;
+}
+
+.mdc-fab--mini {
+    width: 36px !important;
+    height: 36px !important;
+    box-shadow: none !important;
+}
+
+.mat-mdc-mini-fab {
+    background-color: #02051970 !important;
 }
 
 
 //-----------------style-css-------------------//
+
+.modal-body {
+    padding: 5px 15px !important;
+    font-size: 1rem !important;
+}
 
 .dashboard-table{
     width: 100%;
@@ -174,6 +190,7 @@ body {
     font-weight: 600;
     letter-spacing: normal;
     color: #151515;
+    margin-bottom: 0px;
 }
 
 
