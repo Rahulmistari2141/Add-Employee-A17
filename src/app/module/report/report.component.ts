@@ -36,8 +36,10 @@ import { RouterModule } from '@angular/router';
 export class ReportComponent implements OnInit {
   formView: boolean = false;
   employeeList: any[] = [];
+  empId: any;
   readonly dialog = inject(MatDialog);
   empView: any;
+  emp:any;
 
   constructor(private http: HttpClient,
     private matDialog:MatDialog,
@@ -69,5 +71,20 @@ export class ReportComponent implements OnInit {
   addNew() {
     this.router.navigate(['./app-home']);
   };
+  
+  onDelete(data:any){
+    console.log("data delete ", data);    
+    const isDelete = confirm("Are you sure want to delete");
+    if(isDelete){
+      this.http.delete("https://freeapi.gerasim.in/api/EmployeeApp/DeleteEmployeeByEmpId?empId=" + data?.empId).subscribe((res: any) =>{
+        if(res.result){
+          alert('Employee Delete Successfully')
+        } else{
+          alert(res.message)
+        }
+      })
+    }
+  }
+
 }
 
