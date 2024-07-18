@@ -338,9 +338,8 @@
                                 </div>
                             </div>
                             <div class="card-footer text-end">
-                                <button mat-flat-button color="primary" (click)="saveEmployee()">
-                                    Save Employee
-                                </button>
+                                <button mat-flat-button color="primary" *ngIf="employeeObj.empId === 0" (click)="saveEmployee()">Save Employee</button>
+                                <button mat-flat-button color="primary" *ngIf="employeeObj.empId !== 0" (click)="updateEmployee()">Update Employee</button>
                             </div>
                         </div>
                     </div>

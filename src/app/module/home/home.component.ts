@@ -55,7 +55,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadDesignations();
     this.loadRoles();
-    this.employeeId !=0 ? this.onedit(this.employeeId) : ''  }
+    this.employeeId !=0 ? this.onedit(this.employeeId) : ''  
+  }
 
   stepList: any[] = [
     {
@@ -136,6 +137,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  updateEmployee(){
+    this.http.put("https://freeapi.gerasim.in/api/EmployeeApp/UpdateEmployee", this.employeeObj).subscribe((res:any)=>{
+      if(res.result){
+        alert('Employee Updated Successfully')
+      } else{
+        alert(res.message)
+      }
+    })
+  }
+
   loadDesignations() {
     this.http.get("https://freeapi.gerasim.in/api/EmployeeApp/GetAllDesignation").subscribe((res: any) => {
       this.designationList = res.data;
@@ -170,6 +181,7 @@ export class HomeComponent implements OnInit {
   onedit(id:any){
     this.http.get("https://freeapi.gerasim.in/api/EmployeeApp/GetEmployeeByEmployeeId?id=" + id).subscribe((res: any) => {
       this.employeeObj = res.data;
+      this.employeeObj.empId = id; 
       console.log("data", this.employeeObj)
     });
   }
@@ -177,5 +189,7 @@ export class HomeComponent implements OnInit {
   backButton(){
     this.router.navigate(['./app-report']);
   }
+
+ 
 
 }
