@@ -1,4 +1,7 @@
 <div class="progress-wrapper">
+    <div class="text-end">
+        <button mat-flat-button color="primary" (click)="backButton()">Back</button>
+    </div>
     <div id="progress-bar-container">
         <ul>
             <li class="step step01" (click)="setActiveStep(step)"
@@ -33,8 +36,10 @@
                             <mat-label>Email ID</mat-label>
                             <input matInput [(ngModel)]="employeeObj.empEmailId" name="empEmailId" #empEmailId="ngModel"
                                 required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
-                            <mat-error *ngIf="empEmailId.errors && empEmailId.errors?.['required']">Please Enter Email ID</mat-error>
-                            <mat-error *ngIf="empEmailId.errors && empEmailId.errors?.['pattern']">Email is invalid</mat-error>
+                            <mat-error *ngIf="empEmailId.errors && empEmailId.errors?.['required']">Please Enter Email
+                                ID</mat-error>
+                            <mat-error *ngIf="empEmailId.errors && empEmailId.errors?.['pattern']">Email is
+                                invalid</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
@@ -74,9 +79,11 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Mobile No.</mat-label>
                             <input matInput [(ngModel)]="employeeObj.empContactNo" maxlength="10" name="empContactNo"
-                                #empContactNo="ngModel" required onlyNumber pattern="['[5-9]\\d{10}']" (keypress)="onlyDigits($event)">
+                                #empContactNo="ngModel" required onlyNumber pattern="['[5-9]\\d{10}']"
+                                (keypress)="onlyDigits($event)">
                             <mat-error *ngIf="empContactNo.errors?.['required']">Please Enter Mobile No.</mat-error>
-                            <mat-error *ngIf="empContactNo.errors?.['pattern']">Please Enter valid Mobile No.</mat-error>
+                            <mat-error *ngIf="empContactNo.errors?.['pattern']">Please Enter valid Mobile
+                                No.</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">
@@ -89,9 +96,13 @@
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Personal Email ID</mat-label>
                             <input matInput [(ngModel)]="employeeObj.empPersonalEmailId" name="empPersonalEmailId"
-                                #empPersonalEmailId="ngModel" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
-                                <mat-error *ngIf="empPersonalEmailId.errors && empPersonalEmailId.errors?.['required']">Please Enter Email ID</mat-error>
-                                <mat-error *ngIf="empPersonalEmailId.errors && empPersonalEmailId.errors?.['pattern']">Email is invalid</mat-error>
+                                #empPersonalEmailId="ngModel" required
+                                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                            <mat-error
+                                *ngIf="empPersonalEmailId.errors && empPersonalEmailId.errors?.['required']">Please
+                                Enter Email ID</mat-error>
+                            <mat-error *ngIf="empPersonalEmailId.errors && empPersonalEmailId.errors?.['pattern']">Email
+                                is invalid</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-4">

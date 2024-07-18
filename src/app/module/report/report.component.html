@@ -12,8 +12,11 @@
             <div class="col-sm-auto">
                 <div class="d-flex justify-content-between gap-2">
                     <button mat-flat-button color="primary">Search</button>
-                    <button  mat-stroked-button color="primary">Clear</button>
+                    <button mat-stroked-button color="primary">Clear</button>
                 </div>
+            </div>
+            <div class="col-sm-auto ms-auto">
+                <button mat-flat-button color="primary" (click)="addNew()">Add New</button>
             </div>
         </div>
         <div class="table-responsive">
@@ -30,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let empView of employeeList">                              <!-------use syntax - *ngFor="let item of items"-------->
+                    <tr *ngFor="let empView of employeeList"> <!-------use syntax - *ngFor="let item of items"-------->
                         <td>{{empView.empCode}}</td>
                         <td>{{empView.empName}}</td>
                         <td>{{empView.empEmailId}}</td>

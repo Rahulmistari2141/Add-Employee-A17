@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AboutComponent } from '../../layout/about/about.component';
 import { DashboardComponent } from '../../layout/dashboard/dashboard.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,7 +29,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatTooltipModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this.activatedRoute?.queryParamMap.subscribe((queryParam) => {
       this.employeeId = queryParam.get('id');
@@ -170,6 +172,10 @@ export class HomeComponent implements OnInit {
       this.employeeObj = res.data;
       console.log("data", this.employeeObj)
     });
+  }
+
+  backButton(){
+    this.router.navigate(['./app-report']);
   }
 
 }

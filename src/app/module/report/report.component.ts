@@ -10,6 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ViewReportComponent } from './view-report/view-report.component';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-report',
@@ -25,7 +27,8 @@ import { ViewReportComponent } from './view-report/view-report.component';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule
   ],
   templateUrl: './report.component.html',
   styleUrl: './report.component.scss'
@@ -37,7 +40,8 @@ export class ReportComponent implements OnInit {
   empView: any;
 
   constructor(private http: HttpClient,
-    private matDialog:MatDialog
+    private matDialog:MatDialog,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +64,10 @@ export class ReportComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       result == 'yes' ? this.empView = null : '';
     });
+  };
+
+  addNew() {
+    this.router.navigate(['./app-home']);
   };
 }
 
